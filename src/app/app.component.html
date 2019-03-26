@@ -1,7 +1,16 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>FB Marketing Tool</span>
+    <span>{{title}}</span>
     <span class="toolbar-spacer"></span>
+    <div *ngIf="userService.isLoggedUser() | async as user; else showLogin">
+      <button mat-button color="accent" (click)="logout()">Log Out</button>
+    </div>
+    <ng-template #showLogin>
+      <mat-chip-list>
+        <mat-chip color="accent" selected>Not Logged In</mat-chip>
+      </mat-chip-list>
+    </ng-template>
+    
     <button mat-mini-fab color="primary"><mat-icon >help_outline</mat-icon></button>
   </mat-toolbar-row>
 </mat-toolbar>
